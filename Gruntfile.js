@@ -107,4 +107,10 @@ module.exports = function(grunt) {
     ['build', 'watch']
   );
 
+  grunt.registerTask(
+    'heroku',
+    'Build for heroku',
+    ['build']
+  );
+
 };
