@@ -9,14 +9,15 @@ module.exports = function(grunt) {
         accessKeyId:    '<%= aws.key %>',
         secretAccessKey: '<%= aws.secret %>',
         uploadConcurrency: 20,
-        downloadConcurrency: 20
+        downloadConcurrency: 20,
+        region: 'us-west-2'
       },
       production: {
         options: {
           bucket: grunt.envConfig['production']['aws']['bucket']
         },
         files: [
-          {expand: true, cwd: '/public', src: ['**'], dest: '/assets'}
+          {expand: true, cwd: 'public', src: ['**'], dest: '/assets/', action: 'upload'}
         ]
       },
     }
