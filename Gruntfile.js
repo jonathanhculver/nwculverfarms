@@ -1,7 +1,8 @@
 module.exports = function(grunt) {
 
-  // Load config
+  // Load dependencies
   require('./config/grunt/config.js')(grunt);
+  require('./config/grunt/deploy.js')(grunt);
 
   // Project configuration.
   grunt.config.merge({
@@ -81,6 +82,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-aws-s3');
 
   //tasks
   grunt.registerTask(
@@ -98,19 +100,13 @@ module.exports = function(grunt) {
   grunt.registerTask(
     'build',
     'Compiles all of the assets and copies the files to the public directory.',
-    ['clean', 'styles', 'scripts', 'clean']
+    ['styles', 'scripts', 'clean']
   );
 
   grunt.registerTask(
     'default',
     'Watches the project for changes, automatically builds them and runs a server.',
     ['build', 'watch']
-  );
-
-  grunt.registerTask(
-    'heroku',
-    'Build for heroku',
-    ['build']
   );
 
 };
